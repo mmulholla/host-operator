@@ -224,6 +224,11 @@ func (r *Reconciler) handleDeactivatedUserSignup(logger logr.Logger, config tool
 		return reconcile.Result{}, err
 	}
 
+	err = r.updateStatus(logger, userSignup, r.setStatusDeactivatedApproval)
+	if err != nil {
+		return reconcile.Result{}, err
+	}
+
 	return reconcile.Result{}, nil
 }
 
